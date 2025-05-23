@@ -4,17 +4,11 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ILogger<HomeController> logger, IConfiguration configuration) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
+            ViewData["Greeting"] = configuration["Greeting"];
             return View();
         }
 
